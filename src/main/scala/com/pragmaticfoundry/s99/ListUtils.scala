@@ -7,6 +7,7 @@ package com.pragmaticfoundry.s99
 object ListUtils {
 
     def last[T](l:List[T]):T = l match {
+        case Nil => throw new NoSuchElementException("List is empty")
         case head::Nil => head
         case head::tail => last(tail)
     }
@@ -19,6 +20,7 @@ object ListUtils {
     def nth[T](k:Int, l:List[T]):T = if (k == 0) l.head else nth(k - 1, l.tail)
 
     def length[T](l:List[T]):Long = l match {
+        case Nil => throw new NoSuchElementException("List is empty")
         case head::Nil => 1
         case head::tail => 1 + length(tail)
     }
@@ -31,8 +33,8 @@ object ListUtils {
 
     def isPalindrome[T](l:List[T]) = l.reverse == l
 
-    def flatten[Any](l:List[Any]):List[Any] =  l.reverse.foldLeft(List.empty[Any]) {
-        case ( r, t:List[Any] ) => flatten(t):::r
+    def flatten[Any](l:List[_]):List[Any] =  l.reverse.foldLeft(List.empty[Any]) {
+        case ( r, t:List[_] ) => flatten(t):::r
         case ( r, t:Any ) => t::r
     }
 
