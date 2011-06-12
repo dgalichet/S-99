@@ -20,9 +20,10 @@ class ListUtilsTests extends Specification { def is =
         "be able to Find out whether a list is a palindrome"                        ! p06^
         "be able to Flatten a nested list structure"                                ! p07^
         "be able to Eliminate consecutive duplicates of list elements"              ! p08^
+        "be able to Pack consecutive duplicates of list elements into sublists"     ! p09^
+        "return a tuple ( List(equal elements)), tail"                              ! h01^
                                                                                     end
-/*        "be able to Pack consecutive duplicates of list elements into sublists"     ! p09^
-        "be able to Run-length encoding of a list"                                  ! p10^
+/*        "be able to Run-length encoding of a list"                                  ! p10^
         "be able to Modified run-length encoding"                                   ! p11^
         "be able to Decode a run-length encoded list"                               ! p12^*/
 
@@ -41,9 +42,17 @@ class ListUtilsTests extends Specification { def is =
         List('a, 'b) === compress(List('a, 'a, 'b)) and
         List('a, 'b, 'c, 'a, 'd, 'e) === compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
     }
-    def p09 = { false /* List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)) ===
+    def p09 = { List(List('a)) === pack(List('a)) and
+        List(List('a), List('b), List('c)) === pack(List('a, 'b, 'c)) and
+        List(List('a, 'a), List('b), List('c)) === pack(List('a, 'a, 'b, 'c))
+    /* List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)) ===
             pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))*/ }
     def p10 = { false /*encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))*/ }
     def p11 = { false /*encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))*/ }
     def p12 = { false /*decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))*/ }
+
+    def h01 = {
+        (List('a), List('b, 'c)) === packFirsts(List('a, 'b, 'c)) and
+        (List('a, 'a), List('b, 'c)) === packFirsts(List('a, 'a, 'b, 'c))
+    }
 }

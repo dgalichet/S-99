@@ -44,4 +44,17 @@ object ListUtils {
         case head::tail => if (head != tail.head) head::compress(tail) else compress(tail)
     }
 
+    def pack[T](l:List[T]):List[List[T]] = l match {
+        case Nil => Nil
+        case head::Nil => List(List(head))
+        case head::tail if head == tail.head => List(head)::pack(tail)
+        case head::tail => List(head)::pack(tail)
+    }
+
+    def packFirsts[T](l:List[T]):(List[T], List[T]) = ( (List.empty[T], List.empty[T]) /: l) {
+        case ( ( Nil, _ ), e ) => ( e::Nil, Nil )
+        case ( (h, Nil), e ) if h.head == e => ( e::h, Nil )
+        case ( (h, t), e) => ( h, t :+ e )
+    }
+
 }
