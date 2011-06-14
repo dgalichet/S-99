@@ -22,9 +22,9 @@ class ListUtilsTests extends Specification { def is =
         "be able to Eliminate consecutive duplicates of list elements"              ! p08^
         "be able to Pack consecutive duplicates of list elements into sublists"     ! p09^
         "return a tuple ( List(equal head elements), tail)"                         ! h01^
+        "be able to Run-length encoding of a list"                                  ! p10^
                                                                                     end
-/*        "be able to Run-length encoding of a list"                                  ! p10^
-        "be able to Modified run-length encoding"                                   ! p11^
+/*        "be able to Modified run-length encoding"                                   ! p11^
         "be able to Decode a run-length encoded list"                               ! p12^*/
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
@@ -57,7 +57,8 @@ class ListUtilsTests extends Specification { def is =
             pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
     }
 
-    def p10 = { false /*encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))*/ }
+    def p10 = { List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)) ===
+        encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) }
 
     def p11 = { false /*encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))*/ }
 

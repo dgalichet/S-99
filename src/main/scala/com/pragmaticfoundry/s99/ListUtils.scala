@@ -1,5 +1,7 @@
 package com.pragmaticfoundry.s99
 
+import javax.management.remote.rmi._RMIConnection_Stub
+
 /**
  * @author David Galichet.
  */
@@ -64,5 +66,8 @@ object ListUtils {
         case ( (h, Nil), e ) if h.head == e => ( e::h, Nil )
         case ( (h, t), e) => ( h, t :+ e )
     }
+
+    // P10
+    def encode[T](l:List[T]):List[(Int, T)] = pack(l) map { e => (e.size, e.head) }
 
 }
