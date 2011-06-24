@@ -70,4 +70,10 @@ object ListUtils {
     // P10
     def encode[T](l:List[T]):List[(Int, T)] = pack(l) map { e => (e.size, e.head) }
 
+    // P11
+    def encodeModified[T](l:List[T]):List[Any] = encode(l) map {
+        case (1, x) => x
+        case x => x
+    }
+
 }
