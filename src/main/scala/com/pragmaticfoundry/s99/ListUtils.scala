@@ -1,6 +1,7 @@
 package com.pragmaticfoundry.s99
 
 import javax.management.remote.rmi._RMIConnection_Stub
+import org.specs2.internal.scalaz.ListT
 
 /**
  * @author David Galichet.
@@ -74,6 +75,16 @@ object ListUtils {
     def encodeModified[T](l:List[T]):List[Any] = encode(l) map {
         case (1, x) => x
         case x => x
+    }
+
+    // P12
+    def decode[T](l:List[(Int, T)]):List[T] = l flatMap {
+        case (m, e) => mult(m, e)
+    }
+
+    def mult[T](m:Int, e:T):List[T] = m match {
+        case 0 => Nil
+        case x => e::mult(x-1, e)
     }
 
 }

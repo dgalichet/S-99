@@ -24,9 +24,9 @@ class ListUtilsTests extends Specification { def is =
         "return a tuple ( List(equal head elements), tail)"                         ! h01^
         "be able to Run-length encoding of a list"                                  ! p10^
         "be able to Modified run-length encoding"                                   ! p11^
+        "return a list of n specified elements"                                     ! h02^
+        "be able to Decode a run-length encoded list"                               ! p12^
                                                                                     end
-/*        "be able to Modified run-length encoding"                                   ! p11^
-        "be able to Decode a run-length encoded list"                               ! p12^*/
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
 
@@ -64,10 +64,18 @@ class ListUtilsTests extends Specification { def is =
     def p11 = { List((4,'a), 'b, (2,'c), (2,'a), 'd, (4,'e)) ===
         encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) }
 
-    def p12 = { false /*decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))*/ }
+    def p12 = {
+        List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e) ===
+            decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))) }
 
     def h01 = {
         (List('a), List('b, 'c)) === packFirsts(List('a, 'b, 'c)) and
         (List('a, 'a), List('b, 'c)) === packFirsts(List('a, 'a, 'b, 'c))
+    }
+
+    def h02 = {
+        Nil === mult(0, 'a) and
+        List('a) === mult (1, 'a) and
+        List('a, 'a, 'a, 'a) === mult(4, 'a)
     }
 }
