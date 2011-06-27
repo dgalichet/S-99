@@ -87,4 +87,11 @@ object ListUtils {
         case x => e::mult(x-1, e)
     }
 
+    // P13
+    def encodeDirect[T](l:List[T]):List[(Int, T)] = l.foldLeft(List.empty[List[T]]) {
+        case (Nil, t) => List(t)::Nil
+        case (head::tail, t) if head.head == t => (t::head)::tail
+        case (head::tail, t) => List(t)::head::tail
+    }.reverse.map(e => (e.size, e.head))
+
 }
