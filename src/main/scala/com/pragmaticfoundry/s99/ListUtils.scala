@@ -97,4 +97,6 @@ object ListUtils {
     // P14
     def duplicate[T](l:List[T]):List[T] = l.flatMap(e => List(e, e))
 
+    // P15
+    def duplicateN[T](m:Int, l:List[T]):List[T] = l.flatMap(e => mult(m, e))
 }
