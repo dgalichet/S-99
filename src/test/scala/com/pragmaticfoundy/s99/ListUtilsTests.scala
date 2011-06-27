@@ -30,6 +30,8 @@ class ListUtilsTests extends Specification { def is =
         "Duplicate elements of a list"                                              ! p14^
         "Duplicate the elements of a list a given number of times"                  ! p15^
         "Drop every Nth element from a list"                                        ! p16^
+        "Split a list into two parts"                                               ! p17^
+        "Extract a slice from a list"                                               ! p18^
                                                                                     end
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
@@ -90,6 +92,15 @@ class ListUtilsTests extends Specification { def is =
 
     def p16 = {
         List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k) === drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    }
+
+    def p17 = {
+        (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+            split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    }
+
+    def p18 = {
+        List('d, 'e, 'f, 'g) === slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
     }
 
     def h01 = {

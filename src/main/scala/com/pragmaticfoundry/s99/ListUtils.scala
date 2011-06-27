@@ -105,4 +105,10 @@ object ListUtils {
         case ((i, nl), _) if i == n => (1, nl)
         case ((i, nl), e) => (i+1, e::nl)
     }._2.reverse
+
+    // p17
+    def split[T](n:Int, l:List[T]):(List[T], List[T]) = (l.take(n), l.drop(n))
+
+    // P18
+    def slice[T](from:Int, to:Int, l:List[T]):List[T] = l.take(to).drop(from)
 }
