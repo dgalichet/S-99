@@ -27,6 +27,7 @@ class ListUtilsTests extends Specification { def is =
         "return a list of n specified elements"                                     ! h02^
         "be able to Decode a run-length encoded list"                               ! p12^
         "Run-length encoding of a list (direct solution)."                          ! p13^
+        "Duplicate elements of a list"                                              ! p14^
                                                                                     end
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
@@ -74,6 +75,10 @@ class ListUtilsTests extends Specification { def is =
         List((2, 'a), (1, 'b), (1, 'c)) === encodeDirect(List('a, 'a, 'b, 'c)) and
         List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)) ===
             encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+    }
+
+    def p14 = {
+        List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd) === duplicate(List('a, 'b, 'c, 'c, 'd))
     }
 
     def h01 = {

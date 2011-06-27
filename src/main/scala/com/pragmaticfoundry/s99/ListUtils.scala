@@ -94,4 +94,7 @@ object ListUtils {
         case (head::tail, t) => List(t)::head::tail
     }.reverse.map(e => (e.size, e.head))
 
+    // P14
+    def duplicate[T](l:List[T]):List[T] = l.flatMap(e => List(e, e))
+
 }
