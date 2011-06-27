@@ -29,6 +29,7 @@ class ListUtilsTests extends Specification { def is =
         "Run-length encoding of a list (direct solution)."                          ! p13^
         "Duplicate elements of a list"                                              ! p14^
         "Duplicate the elements of a list a given number of times"                  ! p15^
+        "Drop every Nth element from a list"                                        ! p16^
                                                                                     end
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
@@ -85,6 +86,10 @@ class ListUtilsTests extends Specification { def is =
     def p15 = {
         List('a, 'a, 'a) === duplicateN(3, List('a)) and
         List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd) === duplicateN(3, List('a, 'b, 'c, 'c, 'd))
+    }
+
+    def p16 = {
+        List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k) === drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
     }
 
     def h01 = {

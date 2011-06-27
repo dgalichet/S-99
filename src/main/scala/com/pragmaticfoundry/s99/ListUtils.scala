@@ -99,4 +99,10 @@ object ListUtils {
 
     // P15
     def duplicateN[T](m:Int, l:List[T]):List[T] = l.flatMap(e => mult(m, e))
+
+    // P16
+    def drop[T](n:Int, l:List[T]):List[T] = l.foldLeft((1, List.empty[T])) {
+        case ((i, nl), _) if i == n => (1, nl)
+        case ((i, nl), e) => (i+1, e::nl)
+    }._2.reverse
 }
