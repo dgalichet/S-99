@@ -111,4 +111,13 @@ object ListUtils {
 
     // P18
     def slice[T](from:Int, to:Int, l:List[T]):List[T] = l.take(to).drop(from)
+
+    // P19
+    def rotate[T](n:Int, l:List[T]):List[T] = n match {
+        case 0 => l
+        case 1 => l.tail:::(l.head::Nil)
+        case -1 => l.last::l.take(l.size - 1)
+        case i if i > 1 => rotate(i-1, l.tail:::(l.head::Nil))
+        case i if i < -1 => rotate(i+1, l.last::l.take(l.size - 1))
+    }
 }

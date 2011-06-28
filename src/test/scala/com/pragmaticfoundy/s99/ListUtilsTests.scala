@@ -32,6 +32,7 @@ class ListUtilsTests extends Specification { def is =
         "Drop every Nth element from a list"                                        ! p16^
         "Split a list into two parts"                                               ! p17^
         "Extract a slice from a list"                                               ! p18^
+        "Rotate a list N places to the left"                                        ! p19^
                                                                                     end
 
     def p01 = { 8 === last(List(1, 1, 2, 3, 5, 8)) }
@@ -101,6 +102,16 @@ class ListUtilsTests extends Specification { def is =
 
     def p18 = {
         List('d, 'e, 'f, 'g) === slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+    }
+
+    def p19 = {
+        List('b, 'c, 'a) === rotate(1, List('a, 'b, 'c)) and
+        List('d, 'a, 'b, 'c) === rotate(3, List('a, 'b, 'c, 'd)) and
+        List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c) ===
+            rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) and
+        List('d, 'a, 'b, 'c) === rotate(-1, List('a, 'b, 'c, 'd)) and
+        List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i) ===
+            rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
     }
 
     def h01 = {
