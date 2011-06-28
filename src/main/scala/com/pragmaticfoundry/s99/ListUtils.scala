@@ -1,7 +1,6 @@
 package com.pragmaticfoundry.s99
 
-import javax.management.remote.rmi._RMIConnection_Stub
-import org.specs2.internal.scalaz.ListT
+import annotation.tailrec
 
 /**
  * @author David Galichet.
@@ -26,11 +25,7 @@ object ListUtils {
     def nth[T](k:Int, l:List[T]):T = if (k == 0) l.head else nth(k - 1, l.tail)
 
     // P04
-    def length[T](l:List[T]):Long = l match {
-        case Nil => throw new NoSuchElementException("List is empty")
-        case head::Nil => 1
-        case head::tail => 1 + length(tail)
-    }
+    def length[T](l:List[T]):Long = l.foldLeft(0) { case (i, _) => i+1 }
 
     // P05
     def reverse[T](l:List[T]):List[T] = {
@@ -113,7 +108,7 @@ object ListUtils {
     def slice[T](from:Int, to:Int, l:List[T]):List[T] = l.take(to).drop(from)
 
     // P19
-    def rotate[T](n:Int, l:List[T]):List[T] = n match {
+    @tailrec def rotate[T](n:Int, l:List[T]):List[T] = n match {
         case 0 => l
         case 1 => l.tail:::(l.head::Nil)
         case -1 => l.last::l.take(l.size - 1)
