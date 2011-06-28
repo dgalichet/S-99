@@ -77,10 +77,7 @@ object ListUtils {
         case (m, e) => mult(m, e)
     }
 
-    def mult[T](m:Int, e:T):List[T] = m match {
-        case 0 => Nil
-        case x => e::mult(x-1, e)
-    }
+    def mult[T](m:Int, e:T):List[T] = { for (i <- 1 to m) yield e }.toList
 
     // P13
     def encodeDirect[T](l:List[T]):List[(Int, T)] = l.foldLeft(List.empty[List[T]]) {
