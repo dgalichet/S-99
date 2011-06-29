@@ -38,9 +38,9 @@ object ListUtils {
     def isPalindrome[T](l:List[T]) = l.reverse == l
 
     // P07
-    def flatten[Any](l:List[_]):List[Any] =  l.reverse.foldLeft(List.empty[Any]) {
-        case ( r, t:List[_] ) => flatten(t):::r
-        case ( r, t:Any ) => t::r
+    def flatten[Any](l:List[_]):List[Any] = l.foldRight(List.empty[Any]) {
+        case ( t:List[_], r ) => flatten(t):::r
+        case ( t:Any, r ) => t::r
     }
 
     // P08
